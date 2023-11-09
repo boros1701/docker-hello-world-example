@@ -1,12 +1,3 @@
-mainClassName = 'com.javacodegeeks.examples.HelloWorld'
- 
-jar {
-    manifest {
-        attributes(
-            'Main-Class': mainClassName
-        )
-    }
-}
 buildscript {
     repositories {
         maven {
@@ -24,6 +15,16 @@ plugins {
 }
  
 apply plugin: 'com.palantir.docker'
+mainClassName = 'com.javacodegeeks.examples.HelloWorld'
+ 
+jar {
+    manifest {
+        attributes(
+            'Main-Class': mainClassName
+        )
+    }
+}
+
 docker {
     name 'com.javacodegeeks.examples/docker-hello-world:1'
     tags 'latest'
