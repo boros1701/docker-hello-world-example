@@ -1,12 +1,12 @@
 pipeline {
     agent any
     tools { 
-        gradle 'Gradle-8'  
+        gradle 'Gradle'  
     }
     stages {
-        stage ('Clone repository') {
+        stage ('Checkout from scm') {
             steps {
-                git 'https://github.com/boros1701/luminor_task.git' 
+                checkout scmGit(branches: [[name:'*/master']], extensions: [[]], userRemoteConfig: [[url: 'https://github.com/boros1701/luminor_task.git']])
             }
         }
 
