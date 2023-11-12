@@ -28,7 +28,7 @@ jar {
 docker {
     name 'com.javacodegeeks.examples/docker-hello-world:1'
     tags 'latest'
-    dockerfile 'Dockerfile'
+    dockerfile 'src/main/docker/Dockerfile'
     dependsOn tasks.jar
 }
 dockerRun {
