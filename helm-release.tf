@@ -2,7 +2,7 @@ resource "helm_release" "jenkins" {
   name       = "jenkins"
   repository = "https://charts.jenkins.io"
   chart      = "jenkins"
-  wait       = false
+  wait       = true
 
   values = [
     "${file("jenkins-values.yaml")}"
