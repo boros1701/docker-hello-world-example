@@ -12,7 +12,7 @@ pipeline {
 
         stage ('Build') {
             steps {
-                sh 'gradle clean build'
+                sh 'gradlew clean build docker'
             }
         }
 
