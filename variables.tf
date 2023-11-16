@@ -10,6 +10,7 @@ variable "jenkins_admin_user" {
 variable "jenkins_admin_password" {
   type        = string
   description = "Admin password of the Jenkins Application."
+  default     = "yfcv3e44"
 }
 # ------------------------------------------------------------
 # EKS Cluster Settings
