@@ -4,9 +4,9 @@ resource "helm_release" "jenkins" {
   chart      = "jenkins"
   wait       = true
 
-  values = [
-    "${file("jenkins-values.yaml")}"
-  ]
+  #values = [
+  #  "${file("jenkins-values.yaml")}"
+  #]
 
   set_sensitive {
     name  = "controller.adminUser"
