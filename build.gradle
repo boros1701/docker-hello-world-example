@@ -5,13 +5,13 @@ buildscript {
         }
     }
     dependencies {
-        classpath "gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.9.1"
+        classpath "gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0"
     }
 }
  
 plugins {
-    id 'com.palantir.docker' version '0.9.1'
-    id 'com.palantir.docker-run' version '0.9.1'
+    id 'com.palantir.docker' version '0.13.0'
+    id 'com.palantir.docker-run' version '0.13.0'
 }
  
 apply plugin: 'com.palantir.docker'
@@ -28,7 +28,7 @@ jar {
 docker {
     name 'com.javacodegeeks.examples/docker-hello-world:1'
     tags 'latest'
-    dockerfile 'src/main/docker/Dockerfile'
+    dockerfile project.file(‘src/main/docker/Dockerfile’)
     dependsOn tasks.jar
 }
 dockerRun {
