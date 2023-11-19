@@ -4,17 +4,15 @@ buildscript {
             url "https://plugins.gradle.org/m2/"
         }
     }
-    dependencies {
-        classpath "gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0"
-    }
 }
  
 plugins {
-    id 'com.palantir.docker' version '0.13.0'
-    id 'com.palantir.docker-run' version '0.13.0'
+    id 'com.bmuschko.docker-remote-api' version '9.3.4'
+    id 'application'
 }
  
-apply plugin: 'com.palantir.docker'
+apply plugin: 'com.bmuschko.docker-remote-api'
+
 mainClassName = 'com.javacodegeeks.examples.HelloWorld'
  
 jar {
@@ -25,14 +23,19 @@ jar {
     }
 }
 
-docker {
-    name 'com.javacodegeeks.examples/docker-hello-world:1'
-    tags 'latest'
-    dockerfile project.file(‘src/main/docker/Dockerfile’)
-    dependsOn tasks.jar
+task copyDockerfile(type: Copy) 
+{    
+     from project.rootDir // source directory (root project directory)
+     include 'Dockerfile' // specify the file(s) you want to copy    
+     into "$buildDir/libs" // destination directory
 }
-dockerRun {
-    name 'docker-hello-world-container'
-    image 'com.javacodegeeks.examples/docker-hello-world:1'
-    command 'java', '-Djava.security.egd=file:/dev/./urandom', '-jar', 'app.jar'
+
+import com.bmuschko.gradle.docker.tasks.image.*
+
+// Use task types
+task buildMyAppImage(type: DockerBuildImage) {
+    dependsOn copyDockerfile
+    dependsOn jar
+    inputDir = file('build/libs')
+    images.add('com.javacodegeeks.examples/docker-hello-world:1')
 }
