@@ -6,7 +6,7 @@ pipeline {
     stages {
         
         stage ('Build') {
-            steps {
+            script {
                 def gradleHome = tool 'Gradle 8.5'
                 def gradleCmd = "${gradleHome}/bin/gradle"
                 sh '${gradleCmd} clean jar buildMyAppImage'
