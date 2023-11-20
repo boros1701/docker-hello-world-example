@@ -6,7 +6,7 @@ pipeline {
         stage ('Build') {
             steps { 
                 sh 'chmod +x ./gradlew'
-                sh './gradlew clean jar buildMyAppImage'
+                sh './gradlew --no-deamon clean jar buildMyAppImage'
             }
         }
     }
