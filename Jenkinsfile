@@ -8,7 +8,7 @@ pipeline {
         stage ('Build') {
             steps { 
             withGradle {
-                sh './gradlew clean jar buildMyAppImage'
+                sh './gradle clean jar buildMyAppImage'
             }
         }
         }
