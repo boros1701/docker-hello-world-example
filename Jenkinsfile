@@ -1,8 +1,10 @@
 pipeline {
     agent any
+    environment {
+       GRADLE_OPTS= -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=2g -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-
+    }
     
-    stages {
-        
+    stages {  
         stage ('Build') {
             steps { 
                 sh 'chmod +x ./gradlew'
