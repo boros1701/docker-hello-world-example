@@ -8,7 +8,7 @@ pipeline {
         stage ('Build') {
             steps { 
                 sh 'chmod +x ./gradlew'
-                sh './gradlew clean jar jib'
+                sh './gradlew clean jar jibBuildTar'
             }
         }
     }
