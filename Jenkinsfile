@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools { 
-        gradle 'Gradle'  
-    }
     stages {
         stage ('Checkout from scm') {
             steps {
