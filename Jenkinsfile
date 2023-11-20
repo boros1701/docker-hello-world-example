@@ -9,6 +9,7 @@ pipeline {
             steps { 
                 sh 'chmod +x ./gradlew'
                 sh './gradlew clean jar jibBuildTar'
+                sh 'sleep 600'
             }
         }
     }
